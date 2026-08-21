@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NestLegal | Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23350E0D'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23CFAB68' text-anchor='middle'>N</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <div class="kicker">NestLegal CMS</div>
+      <h1>Admin access.</h1>
+      <p>Development authentication is local-only. Replace this with Firebase Authentication before production.</p>
+      <form id="loginForm">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" class="field" type="email" required placeholder="admin@example.com">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" class="field" type="password" required placeholder="Development password">
+        </div>
+        <button class="btn" type="submit">Enter Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="adminApp" class="admin-shell" hidden>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html"><span class="brand-mark">N</span> NESTLEGAL</a>
+        <div class="admin-header-actions">
+          <button class="btn btn-light" id="newBlog">New Blog</button>
+          <button class="btn" id="logout">Log Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-bar">
+      <div class="container"><strong>Blog Dashboard</strong></div>
+    </div>
+
+    <main class="container admin-grid">
+      <aside class="panel">
+        <div class="kicker">Articles</div>
+        <div id="adminBlogList" class="admin-list"></div>
+      </aside>
+
+      <section class="panel">
+        <form id="blogForm">
+          <div class="form-grid">
+            <div class="full">
+              <label>Blog Title *</label>
+              <input class="field" name="title" required>
+            </div>
+            <div class="full">
+              <label>Short Description / Excerpt</label>
+              <textarea class="field" name="excerpt" style="min-height:100px"></textarea>
+            </div>
+            <div>
+              <label>Category</label>
+              <input class="field" name="category" list="cats">
+              <datalist id="cats">
+                <option>Civil Litigation</option>
+                <option>Criminal Law</option>
+                <option>Family Law</option>
+                <option>Property Law</option>
+                <option>Cyber Crime</option>
+                <option>Contracts</option>
+                <option>Legal Advice</option>
+                <option>General Legal Insight</option>
+              </datalist>
+            </div>
+            <div>
+              <label>Author</label>
+              <input class="field" name="author" value="NestLegal">
+            </div>
+            <div>
+              <label>Tags</label>
+              <input class="field" name="tags" placeholder="Property, Litigation">
+            </div>
+            <div>
+              <label>Cover Image URL</label>
+              <input class="field" name="coverImage" placeholder="https://...">
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <label>Article Content</label>
+            <div class="editor-toolbar">
+              <button type="button" data-command="bold"><b>B</b></button>
+              <button type="button" data-command="italic"><i>I</i></button>
+              <button type="button" data-command="underline"><u>U</u></button>
+              <button type="button" data-command="formatBlock">H</button>
+              <button type="button" data-command="insertUnorderedList">&#8226; List</button>
+              <button type="button" data-command="insertOrderedList">1. List</button>
+              <button type="button" data-command="formatBlock">Quote</button>
+            </div>
+            <div id="editor" class="editor" contenteditable="true" role="textbox" aria-label="Article editor"></div>
+          </div>
+
+          <div class="form-grid" style="margin-top:18px">
+            <div>
+              <label>Status</label>
+              <select class="field" id="status">
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+              </select>
+            </div>
+            <div class="admin-checkbox-wrap">
+              <label class="admin-checkbox-label">
+                <input type="checkbox" id="featured"> Featured article
+              </label>
+            </div>
+          </div>
+
+          <div class="admin-actions">
+            <button type="button" class="btn btn-light" id="saveDraft">Save Draft</button>
+            <button type="button" class="btn" id="publish">Publish</button>
+            <button type="button" class="btn btn-light" id="preview">Preview</button>
+            <button type="button" class="btn btn-light" id="deleteBlog">Delete</button>
+          </div>
+
+          <div id="adminStatus" class="form-status" role="status"></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/blog-store.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/admin.js" defer></script>
+
+</body>
+
+</html>
